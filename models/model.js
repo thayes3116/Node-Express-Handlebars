@@ -1,12 +1,15 @@
 var mysql = require("mysql");
-
-var connection = mysql.createConnection({
+var connection;
+if(process.env.JAWSDB_URL){
+  connection = mysql.createconnection(process.env.JAWSDB_URL)
+}else{
+  connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "ParkSpecies"
 });
-
+}
 connection.connect(function(err) {
   if (err) {
     console.error("error connecting: " + err.stack);
@@ -26,7 +29,7 @@ connection.connect(function(err) {
 	 	 });
 	 },
 
-   addSpecies: function(col, val, cb){
+   addSpecies: function(col, val,  cb){
       connection.query("INSERT INTO `species` (col) VALUES (?)", [val], function(err, result) {
           if (err) throw err;
 
