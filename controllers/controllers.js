@@ -1,35 +1,44 @@
-var express = require('express');
-
-var router = express.Router();
-
 var model = require('../models/model.js')
+module.exports = function(app) {
+
 
 // redirect to home
-router.get('/', function(req, res) {
-	res.redirect('index');
-});	
+// app.get('/', function(req, res) {
+// 	res.redirect('index');
+// });	
 
-// index page renders all misc items to the DOM
-router.get('/index', function(req, res) {
-  	model.selectSpecies(function(data){ 		  
+// index page renders all items to the DOM
+app.get('/', function(req, res) {
+  	model.selectSpecies(function(data){ 
+    // console.log(data);		  
     var speciesObject = { species: data };
-    console.log(speciesObject);
     res.render('index', speciesObject);
   });
- });
+});
 
-
-router.post("/", function(req, res) {
-    model.insertSpecies(function() {
+app.post("/delete", function(req, res) {
+    // model.deleteSpecies
+    // ("species.Species_ID",
+    //   req.body.Species_ID, 
+    //   function(data) {
+        console.log(req.body);
+    //     res.redirect("/");
+    // });  
+});
+app.post("/", function(req, res) {
+    model.addSpecies("species.Common_Names",
+      req.body.Common_Names, 
+      function(data) {
+        
         res.redirect("/");
     });
 });
 
-router.post('/misc/update/:id', function(req, res) {
+app.post('/misc/update/:id', function(req, res) {
   model.updateSpecies(req.params.id, function() {
     res.redirect('/');
   });
 });
 
  //export module
- module.exports = router;
+ }
