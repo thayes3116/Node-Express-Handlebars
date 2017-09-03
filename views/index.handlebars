@@ -1,10 +1,14 @@
 <h1>All Endangered Species or Species of Concern for In National Parks
+
 <h3>What state would you like to search?
+
 <form action="/state" method="POST">
 	<textarea type="text" name="State" ></textarea>
 	<button type="submit">Submit</button>
 </form>
+
 <h2>The Species for the State Choosen</h2>
+
 <ol>
   {{#each species}}
   	<li>
@@ -14,18 +18,27 @@
 		<p><span class="label">State:</span> {{this.State}}</p>
 		<p><span class="label">Conservation Status:</span> {{this.Conservation_Status}}</p>  
 		 {{!-- Form should send a delete command to the server --}}
+		<form action="/{{this.id}}?_method=DELETE" method="POST">
+	        <input type="hidden" name="id" value="{{this.id}}">
+	        <button type="submit">Delete</button>
+	    </form>
   	</li>
   {{/each}}
 </ol>
+
+
 <h3>Delete a Species Here</h3>
-<form action="/delete" method="POST">
-	<textarea type="text" name="Species_ID" ></textarea>
-	<button type="submit">Delete</button>
-</form>
+
+<!-- <form action="/{{this.Species_ID}}?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{this.Species_ID}}">
+        <button type="submit">Delete</button>
+      </form> -->
+
 <h3>Add a Species Here</h3>
+
 <form action="/" method="POST">
 	<textarea type="text" placeholder="Species ID" name="Species_ID"></textarea>
-	<textarea type="text" placeholder="Common Names"mname="Common_Names"></textarea>
+	<textarea type="text" placeholder="Common Names" name="Common_Names"></textarea>
 	<textarea type="text" placeholder="Park Name" name="Park_Name"></textarea>
 	<textarea type="text" placeholder="State" name="State"></textarea>
 	<textarea type="text" placeholder="Conservation Status" name="Conservation_Status"></textarea>

@@ -1,7 +1,8 @@
 var model = require('../models/model.js')
-module.exports = function(app) {
 
 
+
+var router = express.Router();
 // redirect to home
 // app.get('/', function(req, res) {
 // 	res.redirect('index');
@@ -16,7 +17,7 @@ app.get('/', function(req, res) {
   });
 });
 
-app.post("/delete", function(req, res) {
+router.post("/Species_ID:", function(req, res) {
     // model.deleteSpecies
     // ("species.Species_ID",
     //   req.body.Species_ID, 
@@ -25,20 +26,20 @@ app.post("/delete", function(req, res) {
     //     res.redirect("/");
     // });  
 });
-app.post("/", function(req, res) {
+router.post("/", function(req, res) {
     model.addSpecies("species.Common_Names",
-      req.body.Common_Names, 
+      
       function(data) {
         
         res.redirect("/");
     });
 });
 
-app.post('/misc/update/:id', function(req, res) {
+router.post('/misc/update/:id', function(req, res) {
   model.updateSpecies(req.params.id, function() {
     res.redirect('/');
   });
 });
 
  //export module
- }
+ module.exports = router;
