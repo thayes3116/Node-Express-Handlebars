@@ -13,7 +13,7 @@ var orm = {
 	 	 });
 	},
 
-	addSpecies: function(col, val,  cb){
+	addSpecies: function(col, val, cb){
 
       connection.query("INSERT INTO `species` (col) VALUES (?)", [val], function(err, result) {
           
@@ -22,17 +22,16 @@ var orm = {
       });
    },
 
+    deleteSpecies: function(val, cb){
 
+      connection.query("DELETE FROM `species` WHERE `Species_ID` = ?", [val],function(err, result) {
+          if (err) {
+            throw err;
+          }
+      cb(results);
+    });
 
-
-
-
-
-
-
-
-
-
+   }	
 
 }
 
