@@ -1,23 +1,4 @@
-var mysql = require("mysql");
-var connection;
-
-if(process.env.JAWSDB_URL){
-  connection = mysql.createconnection(process.env.JAWSDB_URL)
-}else{
-  connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "", 
-  database: "ParkSpecies"
-});
-}
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
+var connection = require("../config/connection.js");
 
  var model ={
 	 selectSpecies: function(cb){

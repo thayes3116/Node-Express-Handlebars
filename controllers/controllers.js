@@ -1,7 +1,5 @@
 var model = require('../models/model.js')
-
-
-
+var express = require("express");
 var router = express.Router();
 // redirect to home
 // app.get('/', function(req, res) {
@@ -9,7 +7,7 @@ var router = express.Router();
 // });	
 
 // index page renders all items to the DOM
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
   	model.selectSpecies(function(data){ 
     // console.log(data);		  
     var speciesObject = { species: data };
