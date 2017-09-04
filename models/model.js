@@ -1,6 +1,7 @@
 var orm = require('../config/orm.js');
 
  var model ={
+
 	 selectSpecies: function(cb){
 
 	 	 orm.selectSpecies(function(data){
@@ -20,14 +21,21 @@ var orm = require('../config/orm.js');
       
     },
 
-   deleteSpecies: function(cb){
+   deleteSpecies: function(col, val, cb){
       
-      orm.deleteSpecies(function(data){
+      orm.deleteSpecies(col, val, function(data){
 
         cb(data);
 
       });
-   }	
+   },
+
+   updateSpecies: function(){
+
+      orm.updateSpecies(col, vals, function(data){
+        
+      })
+   }
 }
 
 module.exports = model;

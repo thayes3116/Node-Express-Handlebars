@@ -1,10 +1,6 @@
 var model = require('../models/model.js')
 var express = require("express");
 var router = express.Router();
-// redirect to home
-// app.get('/', function(req, res) {
-// 	res.redirect('index');
-// });	
 
 // index page renders all items to the DOM
 router.get('/', function(req, res) {
@@ -25,6 +21,7 @@ router.post("/Species_ID:", function(req, res) {
     // });  
 });
 router.post("/", function(req, res) {
+
     model.addSpecies("species.Common_Names",
       
       function(data) {
@@ -34,7 +31,9 @@ router.post("/", function(req, res) {
 });
 
 router.post('/misc/update/:id', function(req, res) {
+
   model.updateSpecies(req.params.id, function() {
+    
     res.redirect('/');
   });
 });
