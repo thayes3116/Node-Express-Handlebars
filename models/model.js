@@ -2,25 +2,31 @@ var orm = require('../config/orm.js');
 
  var model ={
 	 selectSpecies: function(cb){
+
 	 	 orm.selectSpecies(function(data){
+
       cb(data);
+
      });
 	 },
-   addSpecies: function(col, val,  cb){
-      connection.query("INSERT INTO `species` (col) VALUES (?)", [val], function(err, result) {
-          if (err) throw err;
 
-      cb(result);
-      });
-   },
+   addSpecies: function(col, val, cb){
+
+      orm.addSpecies(col, val, function(data){
+
+        cb(data);
+
+     });
+      
+    },
 
    deleteSpecies: function(cb){
-      connection.query("DELETE FROM `species` WHERE `Species_ID` = ?", [req.body.delete],function(err, result) {
-          if (err) {
-            throw err;
-          }
-      cb(results);
-    });
+      
+      orm.deleteSpecies(function(data){
+
+        cb(data);
+
+      });
    }	
 }
 
