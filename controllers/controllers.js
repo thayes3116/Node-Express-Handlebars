@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 });
 
 router.post("/post/state", function(req,res){
+  console.log("hitting /post/state route")
   console.log(req)
   
 })
