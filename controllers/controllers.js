@@ -11,6 +11,10 @@ router.get('/', function(req, res) {
   });
 });
 
+router.post("/post/state", function(req,res){
+  console.log(req)
+  
+})
 router.post("/Species_ID:", function(req, res) {
     // model.deleteSpecies
     // ("species.Species_ID",
