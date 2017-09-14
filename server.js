@@ -4,9 +4,6 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-var routes = require("./controllers/controllers.js");
-
-app.use("/", routes);
 
 var PORT = process.env.PORT || 3000;
 
@@ -20,6 +17,10 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
+
+var routes = require("./controllers/controllers.js");
+
+app.use("/", routes);
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);

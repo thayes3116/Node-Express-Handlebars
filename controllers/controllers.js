@@ -11,9 +11,10 @@ router.get('/', function(req, res) {
   });
 });
 
+
 router.post("/post/state", function(req,res){
   console.log("hitting /post/state route")
-  console.log(req)
+  console.log(req.body.state, "req.body")
   
 })
 router.post("/Species_ID:", function(req, res) {
